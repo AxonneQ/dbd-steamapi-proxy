@@ -5,7 +5,7 @@ This is a simple proxy server that fetches Dead By Daylight statistics and total
 #### Available Calls:
 1. `/?steamid=<INSERT STEAMID64>` - fetches a JSON file containing game statistics for given steamid profile*. 
 
-    *Note: Game details setting on a given profile must be public in order to get the stats. Otherwise `500 Internal Server Error` status will be received from Steam API.
+    *Note: Game details setting on a given Steam profile must be public in order to get the stats. Otherwise `500 Internal Server Error` status will be received from Steam API.
 
 2. `/?getPlayers` - fetches total amount of online players currently playing Dead By Daylight. Only players who are logged in to Steam are taken into account.
 
