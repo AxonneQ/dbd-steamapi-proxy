@@ -12,7 +12,7 @@ const options = {
     cert: fs.readFileSync("ssl/server-cert.pem")
 };
 
-var server = http.createServer(options, (s_req, s_res) => {
+var server = https.createServer(options, (s_req, s_res) => {
     var client_ip = s_req.socket.remoteAddress;
     var client_port = s_req.socket.remotePort;
     var steamid = url.parse(s_req.url, true).query.steamid;
