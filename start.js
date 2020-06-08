@@ -1,4 +1,5 @@
 const https = require("https");
+const http = require("http");
 const port = process.argv[2] || 11059; //node start.js <?port>
 const url = require("url");
 const fs = require("fs");
@@ -11,7 +12,7 @@ const options = {
     cert: fs.readFileSync("ssl/server.cert"),
 };
 
-var server = https.createServer(options, (s_req, s_res) => {
+var server = http.createServer(options, (s_req, s_res) => {
     var client_ip = s_req.socket.remoteAddress;
     var client_port = s_req.socket.remotePort;
     var steamid = url.parse(s_req.url, true).query.steamid;
@@ -44,6 +45,7 @@ var server = https.createServer(options, (s_req, s_res) => {
         } else {
             console.log("Retrieved player data.");
             s_res.setHeader("content-type", "application/json; charset=utf-8");
+            s_res.setHeader("Access-Control-Allow-Origin", "*");
             res.pipe(s_res, { end: true });
             console.log("Player data response sent.");
         }
