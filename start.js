@@ -7,12 +7,12 @@ const fs = require("fs");
 const totalPlayersApi = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=381210";
 const playerStatsApi = `https://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=381210&key=${process.env.STEAMAPIKEY}&steamid=`;
 
-// const options = {
-//     key: fs.readFileSync("ssl/server.key"),
-//     cert: fs.readFileSync("ssl/server.cert"),
-// };
+const options = {
+    key: fs.readFileSync("ssl/server-key.pem"),
+    cert: fs.readFileSync("ssl/server-cert.pem")
+};
 
-var server = http.createServer((s_req, s_res) => {
+var server = http.createServer(options, (s_req, s_res) => {
     var client_ip = s_req.socket.remoteAddress;
     var client_port = s_req.socket.remotePort;
     var steamid = url.parse(s_req.url, true).query.steamid;
