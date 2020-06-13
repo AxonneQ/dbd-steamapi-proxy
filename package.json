@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/AxonneQ/dbd-steamapi-proxy/issues"
   },
-  "homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme"
+  "homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "moment": "^2.26.0"
+  }
 }
