@@ -277,9 +277,9 @@ function parseRequest(s_req, request) {
 			request.api = 'DbD API';
 			request.auth = true;
 			request.content_type = 'application/json';
-            request.hostname = dbdApi_addr;
-            request.path = dbdApi_outfits;
-            request.body = { data: { version: 'steam' } };
+			request.hostname = dbdApi_addr;
+			request.path = dbdApi_outfits;
+			request.body = { data: { version: 'steam' } };
 			request.method = 'POST';
 			request.status = 1;
 			break;
