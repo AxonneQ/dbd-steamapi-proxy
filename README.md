@@ -15,15 +15,15 @@ This is a simple proxy server that fetches Dead By Daylight statistics and total
 4. `/?action=getPlayerTime&args={"steamid":"<INSERT STEAMID64>"}` Fetches time played for Dead By Daylight.
 
 #### DBD API:
-1. `/action=getShrine` Fetches Current Shrine in DBD Store and time remaining. 
+1. `/?action=getShrine` Fetches Current Shrine in DBD Store and time remaining. 
 
     Note: **This is currently not working due to incorrect POST body, feel free to correct it.**
 
-2. `/action=getOutfits` Fetches Current Outfits in DBD Store 
+2. `/?action=getOutfits` Fetches Current Outfits in DBD Store 
 
     Note: **This doesn't always include the newest data. Still working on it, again, feel free to correct it :)**
 
-3. `/action=getConfig` Fetches Current DBD config. This lists the latest settings of DBD as well as contains Kraken Decryption Key for CDN which I have not implemented yet. This allows to fetch and decrypt news and other CDN content.
+3. `/?action=getConfig` Fetches Current DBD config. This lists the latest settings of DBD as well as contains Kraken Decryption Key for CDN which I have not implemented yet. This allows to fetch and decrypt news and other CDN content.
 #### How to run:
 1. Install [Node.js](https://nodejs.org/en/download/). Works with version 13.12.0. Should work with newest.
 2. Clone/download this repository.
