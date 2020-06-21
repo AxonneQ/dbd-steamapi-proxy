@@ -4,7 +4,7 @@
   "description": "Proxy server that queries steam api for Dead By Daylight user statistics, and sends them back to the client",
   "main": "start.js",
   "scripts": {
-    "start": "node start.js",
+    "start": "node server.js",
     "test": "test"
   },
   "repository": {
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme",
   "dependencies": {
     "chalk": "^4.1.0",
+    "cookies": "^0.8.0",
     "moment": "^2.26.0"
   }
 }
