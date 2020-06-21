@@ -30,7 +30,7 @@ This is a simple proxy server that fetches Dead By Daylight statistics and total
 3. run `npm install` from the repository directory to install dependencies.
 4. Get Steam API key (if you don't have one, get one [here](https://steamcommunity.com/dev/apikey)) and add it to your environment variables. Name it `STEAMAPIKEY`, and set it's value to your Steam API key and restart your commandline to detect changes.
 5. Get a SSL key and certificate, you can get a self signed one using openssl [Linux](https://www.openssl.org/source/) or [Windows](https://slproweb.com/products/Win32OpenSSL.html). Use the following command in the root directory of this project: `openssl req -nodes -x509 -keyout ssl/server-key.pem -out ssl/server-cert.pem`. You can also sign it using certified SSL services like Let's Encrypt (a requirement for certain hosting services like Github Pages, openssl doesn't seem to work).
-6. Once everything is done, run `npm start <port>` to start the server on desired port, else it will default to `11059`.
+6. Once everything is done, run `npm start <port>` to start the server on desired port, else it will default to `11059`. Make sure your port is open.
 
 ### How to use:
 Once the server is running, you can request a https request from your website/service using one of the available calls. e.g.
