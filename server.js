@@ -1,9 +1,12 @@
+const port = process.argv[2] || 11059;
+
 const https = require('https');
-const port = process.argv[2] || 11059; //node start.js <?port>
 const url = require('url');
 const fs = require('fs');
+
 const moment = require('moment');
 const chalk = require('chalk');
+
 const {
 	steamApi_addr,
 	steamApi_usr_stats,
@@ -26,10 +29,6 @@ const loginState = {
 	LOGGEDIN: 1,
 	LOGGINGIN: 2,
 };
-
-if (!process.env.STEAMAPIKEY) {
-    log('Process', `${chalk.bold('STEAMAPIKEY')} environment variable not set. Steam API will not return data.`);
-}
 
 var nextLogin = 0;
 var state = 0;

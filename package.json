@@ -1,34 +1,34 @@
 {
-  "name": "dbd-steamapi-proxy",
-  "version": "1.0.0",
-  "description": "Proxy server that queries steam api for Dead By Daylight user statistics, and sends them back to the client",
-  "main": "start.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AxonneQ/dbd-steamapi-proxy.git"
-  },
-  "keywords": [
-    "Dead",
-    "By",
-    "Daylight",
-    "steamapi",
-    "dbd",
-    "proxy",
-    "server"
-  ],
-  "author": "Igor Bolek (AxonneQ)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AxonneQ/dbd-steamapi-proxy/issues"
-  },
-  "homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme",
-  "dependencies": {
-    "chalk": "^4.1.0",
-    "cookies": "^0.8.0",
-    "moment": "^2.26.0"
-  }
+	"name": "dbd-steamapi-proxy",
+	"version": "1.0.0",
+	"description": "Proxy server that queries steam api for Dead By Daylight user statistics, and sends them back to the client",
+	"main": "run.js",
+	"scripts": {
+		"start": "node run.js",
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AxonneQ/dbd-steamapi-proxy.git"
+	},
+	"keywords": [
+		"Dead",
+		"By",
+		"Daylight",
+		"steamapi",
+		"dbd",
+		"proxy",
+		"server"
+	],
+	"author": "Igor Bolek (AxonneQ)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/AxonneQ/dbd-steamapi-proxy/issues"
+	},
+	"homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme",
+	"dependencies": {
+		"chalk": "^4.1.0",
+		"moment": "^2.26.0",
+		"readline-sync": "^1.4.10"
+	}
 }
