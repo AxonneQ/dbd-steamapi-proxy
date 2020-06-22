@@ -27,6 +27,10 @@ const loginState = {
 	LOGGINGIN: 2,
 };
 
+if (!process.env.STEAMAPIKEY) {
+    log('Process', `${chalk.bold('STEAMAPIKEY')} environment variable not set. Steam API will not return data.`);
+}
+
 var nextLogin = 0;
 var state = 0;
 var auth_cookie = '';
