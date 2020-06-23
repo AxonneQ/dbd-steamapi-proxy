@@ -59,7 +59,8 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 		return;
 	}
 
-	var data;
+    var data;
+    var err_ct;
 
 	if (request.method == 'POST' || 'GET') {
 		await getData(request)
@@ -70,6 +71,7 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 			.catch((err) => {
                 data = err.data;
                 s_res.statusCode = err.statusCode;
+                err_ct = err.content_type;
 			});
 	} else {
 		log(`${request.origin_ip}:${request.origin_port}`, `Invalid Method '${request.method}'`);
@@ -85,9 +87,11 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 		s_res.write(data);
 		log(`Server`, `Response sent.`);
 	} else {
-        s_res.write(JSON.stringify({error: 'Could not retrieve data.', from: request.api, statusCode: s_res.statusCode, message: data })
-        );
-		log(`Server`, `Could not get response. Ending connection.`);
+        if (err_ct.includes('json')) {
+            data = JSON.parse(data);
+        }
+        s_res.write(JSON.stringify({error: 'Could not retrieve data.', from: request.api, statusCode: s_res.statusCode, message: data }));
+		log(`Server`, `Could not get response.`);
 	}
 	s_res.end();
 
@@ -118,6 +122,8 @@ async function getData(request) {
 		let data = '';
 
 		var req = https.request(options, (res) => {
+            data_ct = res.headers["content-type"];
+
             res.on('data', (chunk) => {
                 data += chunk;
             });
@@ -129,10 +135,10 @@ async function getData(request) {
                 } else if (request.api === 'DbD API' && res.statusCode === 403) {
                     log(request.api, `403 Forbidden. Attempting to login...`);
                     login();
-                    reject({ statusCode: res.statusCode, data: data });
+                    reject({ statusCode: res.statusCode, data: data, content_type: data_ct });
                 } else {
                     log(request.api, `Error: ${chalk.red(res.statusCode)}`);
-                    reject({ statusCode: res.statusCode, data: data });
+                    reject({ statusCode: res.statusCode, data: data, content_type: data_ct });
                 }
             })            
 		});
