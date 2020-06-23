@@ -40,7 +40,7 @@ Once the server is running, you can request a https request from your website/se
 
 ### Error handling:
 If Steam or DBD API fails to return a response, the server will return error response with status and the origin API.
-```js
+```
 {
     error:      <message>
     from:       <api name>
