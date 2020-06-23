@@ -1,4 +1,4 @@
-const port = process.argv[2] || 11059;
+const port = process.argv[2] || 443;
 
 const https = require('https');
 const url = require('url');
@@ -64,10 +64,12 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 	if (request.method == 'POST' || 'GET') {
 		await getData(request)
 			.then((res) => {
-				data = res.data;
+                data = res.data;
+                s_res.statusCode = res.statusCode;
 			})
 			.catch((err) => {
-				log('Server', `Error: ${err.statusCode}`);
+                data = err.data;
+                s_res.statusCode = err.statusCode;
 			});
 	} else {
 		log(`${request.origin_ip}:${request.origin_port}`, `Invalid Method '${request.method}'`);
@@ -79,17 +81,18 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 	s_res.setHeader('Access-Control-Allow-Origin', '*');
 	s_res.setHeader('content-type', `${request.content_type}; charset=utf-8`);
 
-	if (data != null) {
+	if (data != null && s_res.statusCode === 200) {
 		s_res.write(data);
-		log(`Server`, `Response sent to ${chalk.bold(request.origin_ip)}.`);
+		log(`Server`, `Response sent.`);
 	} else {
-		log(`Server`, `Response is undefined. Ending connection.`);
+        s_res.write(JSON.stringify({error: 'Could not retrieve data.', from: request.api, statusCode: s_res.statusCode, message: data })
+        );
+		log(`Server`, `Could not get response. Ending connection.`);
 	}
-
 	s_res.end();
 
 	s_req.on('close', () => {
-		log(`Server`, `Closed connection with ${chalk.bold(`${request.origin_ip}:${request.origin_port}\n`)}`);
+		log(`Server`, `Closed connection with ${chalk.bold(`${request.origin_ip}:${request.origin_port}.\n`)}`);
 	});
 });
 
@@ -115,45 +118,23 @@ async function getData(request) {
 		let data = '';
 
 		var req = https.request(options, (res) => {
-			switch (res.statusCode) {
-				case 403: {
-					log(request.api, `403 Forbidden`);
-					login();
-					reject({ statusCode: 403 });
-					req.end();
-					break;
-				}
-				case 404: {
-					log(request.api, `404 Not Found`);
-					reject({ statusCode: 404 });
-					req.end();
-					break;
-				}
-				case 500: {
-					log(request.api, `500 Internal Server Error`);
-					reject({ statusCode: 500 });
-					req.end();
-					break;
-				}
-				case 200: {
-					log(`Server`, `Receiving data from ${chalk.bold(request.api)}.`);
-					res.on('data', (chunk) => {
-						data += chunk;
-					});
+            res.on('data', (chunk) => {
+                data += chunk;
+            });
 
-					res.on('end', () => {
-						log(`Server`, `Data Received from ${chalk.bold(request.api)}.`);
-						resolve({ statusCode: 200, data: data });
-					});
-					break;
-				}
-				default: {
-					log(request.api, `${res.statusCode} Error`);
-					reject({ statusCode: res.statusCode });
-					req.end();
-					break;
-				}
-			}
+            res.on('end', () => {
+                if (res.statusCode === 200) {
+                    log(`Server`, `Data Received from ${chalk.bold(request.api)}.`);
+                    resolve({ statusCode: res.statusCode, data: data });
+                } else if (request.api === 'DbD API' && res.statusCode === 403) {
+                    log(request.api, `403 Forbidden. Attempting to login...`);
+                    login();
+                    reject({ statusCode: res.statusCode, data: data });
+                } else {
+                    log(request.api, `Error: ${chalk.red(res.statusCode)}`);
+                    reject({ statusCode: res.statusCode, data: data });
+                }
+            })            
 		});
 
 		req.on('error', (err) => {
@@ -188,10 +169,10 @@ function login() {
 		if (res.headers['set-cookie']) {
 			auth_cookie = res.headers['set-cookie'];
 			nextLogin = moment().unix() + 1800;
-			log('Server', 'Logged Into DBD API, refresh in 30 minutes.');
+			log('Server', 'Logged into DbD API, refresh in 30 minutes.');
 			state = loginState.LOGGEDIN;
 		} else {
-			log('Server', 'Could not loggin into DBD API.');
+			log('Server', 'Could not login into DbD API.');
 			state = loginState.LOGGEDOUT;
 		}
 	});
