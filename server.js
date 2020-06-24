@@ -1,4 +1,6 @@
-const port = process.argv[2] || 443;
+var args = require('minimist')(process.argv.slice(2));
+const port = args.port || 443;
+const apis = args.api || 'all';
 
 const https = require('https');
 const url = require('url');
@@ -34,10 +36,12 @@ var nextLogin = 0;
 var state = 0;
 var auth_cookie = '';
 
-login();
+if (apis.includes('dbd') || apis.includes('all')) {
+    login();
+}
 
 var server = https.createServer(server_options, async (s_req, s_res) => {
-	if (!isLoggedIn() && state !== loginState.LOGGINGIN) {
+	if (!isLoggedIn() && state !== loginState.LOGGINGIN && (apis.includes('all') || apis.includes('dbd'))) {
 		state = loginState.LOGGINGIN;
 		login();
 	}
@@ -47,7 +51,13 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
 		origin_port: s_req.socket.remotePort,
 	};
 
-	request = parseRequest(s_req, request);
+    request = parseRequest(s_req, request);
+
+    if(request.status == 0) {
+        s_res.statusCode = 404;
+        s_res.end();
+        return;
+    }
 
 	if (request.status == -1) {
 		s_res.statusCode = 400;
@@ -57,7 +67,7 @@ var server = https.createServer(server_options, async (s_req, s_res) => {
             \t${chalk.green('Request: ')}${chalk.bold(request.url.search)}\n`
 		);
 		return;
-	}
+    }
 
     var data;
     var err_ct;
@@ -277,7 +287,17 @@ function parseRequest(s_req, request) {
 		default: {
 			request.status = -1;
 		}
-	}
+    }
+    
+    if (request.api === 'Steam API' && (apis != 'steam' && apis != 'all')) {
+        request.status = 0;
+        return request;
+    }
+
+    if (request.api === 'DbD API' && apis != 'dbd' && apis != 'all') {
+        request.status = 0;
+        return request;
+    }
 
 	if (request.status !== -1) {
 		log(`${request.origin_ip}:${request.origin_port}`, `${request.action}`);
