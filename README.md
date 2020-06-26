@@ -16,7 +16,7 @@ This is a simple proxy server that fetches Dead By Daylight statistics and total
 
 Note that all arguments must be passed as string, by using quotes `""`, otherwise long numbers such as SteamID will lose precision and be rounded to 0 at the end. This will fetch a wrong/invalid profile.
 
-#### DBD API:
+#### DBD API: (As of 23 of June 2020, the DBD api seems to be down or changed the endpoints and this is currently not working anymore)
 1. `/?action=getShrine` Fetches Current Shrine in DBD Store and time remaining. 
 
     Note: **This is currently not working due to incorrect POST body, feel free to correct it.**
