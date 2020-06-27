@@ -5,9 +5,9 @@
 	"main": "run.js",
 	"scripts": {
         "start": "node run.js",
-        "start:dev": "node run.js --port=11059",
-        "start:dev:steam": "node run.js --port=11059 --api=steam",
-        "start:dev:dbd": "node run.js --port=11059 --api=dbd",
+        "start:dev": "node run.js",
+        "start:dev:steam": "node run.js --api=steam",
+        "start:dev:dbd": "node run.js --api=dbd",
 		"test": "test"
 	},
 	"repository": {

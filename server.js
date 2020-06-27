@@ -21,8 +21,8 @@ const {
 } = require('./constants');
 
 const server_options = {
-	key: fs.readFileSync('ssl/server-key.pem'),
-	cert: fs.readFileSync('ssl/server-cert.pem'),
+	key: fs.readFileSync(require('./auth.json').KEYPATH),
+	cert: fs.readFileSync(require('./auth.json').CERTPATH),
 	user_agent: 'game=DeadByDaylight, engine=UE4, version=4.13.2-0+UE4',
 };
 
