@@ -17,14 +17,15 @@ const {
 	dbdApi_addr,
 	dbdApi_config,
 	dbdApi_shrine,
-	dbdApi_outfits,
+    dbdApi_outfits,
+    dbdWiki_addr,
+    dbdWiki_shrine,
 } = require('./constants');
 
 const server_options = {
 	key: fs.readFileSync(require('./auth.json').KEYPATH),
     cert: fs.readFileSync(require('./auth.json').CERTPATH),
     ciphers: "ECDHE-RSA-AES128-GCM-SHA256",
-    requestCert: true,
 	user_agent: 'game=DeadByDaylight, engine=UE4, version=4.13.2-0+UE4',
 };
 
@@ -122,7 +123,7 @@ async function getData(request) {
 			method: request.method,
 			hostname: request.hostname,
 			port: request.port == undefined ? 443 : request.port,
-			path: request.path,
+            path: request.path,
 			headers: {
 				'Content-Type': request.content_type,
 				'User-Agent': request.api == 'Steam API' ? '' : server_options.user_agent,
@@ -170,19 +171,18 @@ function isLoggedIn() {
 
 function login() {
 	let options = {
-		hostname: 'latest.live.dbd.bhvronline.com',
+		hostname: dbdApi_addr,
 		path: '/api/v1/auth/login/guest',
 		method: 'POST',
 		port: 443,
 		headers: {
 			'Content-Type': 'application/JSON',
-			'User-Agent': 'game=DeadByDaylight, engine=UE4, version=4.13.2-0+UE4',
+			'User-Agent': 'DeadByDaylight/++DeadByDaylight+Live-CL-134729 Windows/10.0.19587.1.256.64bit',
 		},
-		body: { clientData: { consentId: '2' } },
+		body: JSON.stringify({ clientData: {consentId: '2' } }),
 		key: server_options.key,
 		cert: server_options.cert,
 	};
-
 	var req = https.request(options, (res) => {
 		if (res.headers['set-cookie']) {
 			auth_cookie = res.headers['set-cookie'];
@@ -265,14 +265,22 @@ function parseRequest(s_req, request) {
 			break;
 		}
 		case 'getShrine': {
-			request.api = 'DbD API';
-			request.auth = true;
-			request.content_type = 'application/json';
-			request.hostname = dbdApi_addr;
-			request.path = dbdApi_shrine;
-			request.body = JSON.stringify({ data: { version: 'steam' } }, null, 8);
-			request.method = 'POST';
-			request.status = 1;
+			// request.api = 'DbD API';
+			// request.auth = true;
+			// request.content_type = 'application/json; charset=utf-8';
+			// request.hostname = dbdApi_addr;
+			// request.path = dbdApi_shrine;
+			// request.body = JSON.stringify({ data: { version: 'steam' } });
+			// request.method = 'POST';
+            // request.status = 1;
+
+            // Getting current Shrine info from DbD Wiki until I figure out how to get it from DbD Api
+            request.api = 'DbD Wiki';
+            request.hostname = dbdWiki_addr;
+            request.path = dbdWiki_shrine;
+            request.content_type = 'text/html';
+            request.method = 'GET';
+            request.status = 1;
 			break;
 		}
 		case 'getOutfits': {
@@ -281,7 +289,7 @@ function parseRequest(s_req, request) {
 			request.content_type = 'application/json';
 			request.hostname = dbdApi_addr;
 			request.path = dbdApi_outfits;
-			request.body = { data: { version: 'steam' } };
+			request.body = { data: { } };
 			request.method = 'POST';
 			request.status = 1;
 			break;
