@@ -2,12 +2,12 @@
 	"name": "dbd-steamapi-proxy",
 	"version": "1.0.0",
 	"description": "Proxy server that queries steam api for Dead By Daylight user statistics, and sends them back to the client",
-	"main": "run.js",
+	"main": "dist/main.js",
 	"scripts": {
-        "start": "node run.js",
-        "start:dev": "node run.js",
-        "start:dev:steam": "node run.js --api=steam",
-        "start:dev:dbd": "node run.js --api=dbd",
+		"start": "tsc && node dist/main.js",
+		"start:dev": "tsc && node dist/main.js",
+		"start:dev:steam": "tsc && node dist/main.js --api=steam",
+		"start:dev:dbd": "tsc && node dist/main.js --api=dbd",
 		"test": "test"
 	},
 	"repository": {
@@ -31,8 +31,24 @@
 	"homepage": "https://github.com/AxonneQ/dbd-steamapi-proxy#readme",
 	"dependencies": {
 		"chalk": "^4.1.0",
+		"got": "^11.5.1",
+		"jsdom": "^16.4.0",
+		"lodash": "^4.17.19",
 		"minimist": "^1.2.5",
-		"moment": "^2.26.0",
-		"readline-sync": "^1.4.10"
+		"moment": "^2.27.0",
+		"readline-sync": "^1.4.10",
+		"request-cookies": "^1.1.0",
+		"tabletojson": "^2.0.4",
+		"tough-cookie": "^4.0.0"
+	},
+	"devDependencies": {
+		"@types/jsdom": "^16.2.3",
+		"@types/lodash": "^4.14.159",
+		"@types/minimist": "^1.2.0",
+		"@types/node": "^14.0.23",
+		"@types/readline-sync": "^1.4.3",
+		"@types/tough-cookie": "^4.0.0",
+		"tslint": "^6.1.2",
+		"typescript": "^3.9.7"
 	}
 }
