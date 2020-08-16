@@ -8,6 +8,8 @@ import { apis } from '../main';
 
 import { IncomingMessage } from 'http';
 import URL from 'url';
+import _ from 'lodash';
+import chalk from 'chalk';
 
 export enum API {
 	steam = 'Steam API',
@@ -108,14 +110,6 @@ export class Controller {
                     request.body = { data: { version: 'steam' } };
                     request.method = 'POST';
                     request.status = 1;
-
-                    // Wiki shrine page
-                    // request.api = API.wiki;
-                    // request.destination.hostname = CONSTANTS.dbdWiki_addr;
-                    // request.destination.path = CONSTANTS.dbdWiki_shrine;
-                    // request.headers.contentType = 'text/html';
-                    // request.method = 'GET';
-                    // request.status = 1;
                     break;
                 }
                 case 'getOutfits': {
@@ -167,7 +161,7 @@ export class Controller {
             }
 
             if (request.status !== -1) {
-                Logger.log(`${request.source.address}`, `${request.action}`);
+                Logger.log(`${request.source.address}`, `${request.action} ${_.has(request.args, 'steamid') ? '( ' + chalk.bold(request.args.steamid) + ' )' : ''}`);
             }
 
             return request;
