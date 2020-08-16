@@ -68,7 +68,7 @@ export class Server {
             }
 
 			req.on('close', () => {
-				Logger.log(`Server`, `Closed connection with ${chalk.bold(`${parsedRequest.source.address}.`)}`);
+				Logger.log(`Server`, `Closed connection with ${parsedRequest.source.address}.`);
 			});
 		});
 
