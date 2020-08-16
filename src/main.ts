@@ -5,6 +5,7 @@ const args = min(process.argv.slice(2));
 export const port = args.port || 443;
 export const apis = args.api || 'all';
 export const rootDir = `${__dirname}`;
+export const cloudfront = args.cloudfront || false;
 
 const isComplete = setup();
 

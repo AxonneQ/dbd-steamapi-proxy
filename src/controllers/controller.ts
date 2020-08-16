@@ -1,3 +1,4 @@
+import { cloudfront } from './../main';
 import { WikiService } from './../services/WikiService';
 import { SteamService } from './../services/SteamService';
 import { DbdService } from './../services/DbdService';
@@ -19,9 +20,14 @@ export enum API {
 export class Controller {
 	public static parseRequest(req: IncomingMessage): Request {
 		const request = new Request();
-		const url = (request.url = URL.parse(req.url as string, true));
+        const url = (request.url = URL.parse(req.url as string, true));
 
-		request.source.address = req.socket.remoteAddress as string;
+        if(cloudfront) {
+            request.source.address = req.headers['X-Forwarded-For'] as string;
+        } else {
+            request.source.address = req.socket.remoteAddress as string;
+        }
+
 		request.action = url.query.action as string;
 
 		if (url.query.args !== undefined) {
