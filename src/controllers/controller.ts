@@ -1,4 +1,3 @@
-import { cloudfront } from './../main';
 import { WikiService } from './../services/WikiService';
 import { SteamService } from './../services/SteamService';
 import { DbdService } from './../services/DbdService';
@@ -22,12 +21,7 @@ export class Controller {
 		const request = new Request();
         const url = (request.url = URL.parse(req.url as string, true));
 
-        if(cloudfront) {
-            request.source.address = req.headers['X-Forwarded-For'] as string;
-        } else {
-            request.source.address = req.socket.remoteAddress as string;
-        }
-
+        request.source.address = req.headers['x-forwarded-for'] as string || req.socket.remoteAddress as string;;
 		request.action = url.query.action as string;
 
 		if (url.query.args !== undefined) {
