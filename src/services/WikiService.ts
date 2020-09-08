@@ -81,10 +81,6 @@ export class WikiService {
                 const name = perkList[perk].displayName;
 
                 perkList[perk].description = wikiPerks.find(_perk => _perk.name === name)?.description;
-
-                // if( perkList[perk].description === undefined) {
-                //     console.log(name);
-                // }
 			}
 		}
 

@@ -151,6 +151,12 @@ export function initPerks(perkList: Perks) {
     perkList.MakeYourChoice = { id: 'MakeYourChoice', displayName: 'Make Your Choice', description: '', side: 'killer', teachableLevel: 40, character: 'The Pig', characterIndex: 268435466, iconPath: 'UI/Icons/Perks/Finland/iconPerks_makeYourChoice.png' };
     perkList.Dying_Light = { id: 'Dying_Light', displayName: 'Dying Light', description: '', side: 'killer', teachableLevel: 40, character: 'The Shape', characterIndex: 268435461, iconPath: 'UI/Icons/Perks/DLC2/iconPerks_dyingLight.png' };
     perkList.TerritorialImperative = { id: 'TerritorialImperative', displayName: 'Territorial Imperative', description: '', side: 'killer', teachableLevel: 35, character: 'The Huntress', characterIndex: 268435463, iconPath: 'UI/Icons/Perks/DLC5/iconPerks_TerritorialImperative.png' };
+    perkList.Hex_Undying = { id: 'Hex_Undying', displayName: 'Hex: Undying', description: '', side: 'killer', teachableLevel: 40, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_hexUndying.png' };
+    perkList.Hex_Blood_Favor = { id: 'Hex_Blood_Favor', displayName: 'Hex: Blood Favour', description: '', side: 'killer', teachableLevel: 35, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_hexBloodFavor.png' };
+    perkList.Dragons_Grip = { id: 'Hex_Undying', displayName: 'Dragon\'s Grip', description: '', side: 'killer', teachableLevel: 30, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_dragonsGrip.png' };
+    perkList.Visionary = { id: 'Visionary', displayName: 'Visionary', description: '', side: 'survivor', teachableLevel: 30, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_visionary.png' };
+    perkList.Desperate_Measures = { id: 'Desperate_Measures', displayName: 'Desperate Measures', description: '', side: 'survivor', teachableLevel: 35, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_desperateMeasures.png' };
+    perkList.Built_To_Last = { id: 'Built_To_Last', displayName: 'Built to Last', description: '', side: 'survivor', teachableLevel: 40, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_builtToLast.png' };
 
     return perkList;
 }
@@ -308,7 +314,13 @@ export interface Perks {
 	OffTheRecord: Perk;
 	MakeYourChoice: Perk;
 	Dying_Light: Perk;
-	TerritorialImperative: Perk;
+    TerritorialImperative: Perk;
+    Hex_Undying: Perk;
+    Hex_Blood_Favor: Perk;
+    Dragons_Grip: Perk;
+    Visionary: Perk;
+    Desperate_Measures: Perk;
+    Built_To_Last: Perk;
 }
 
 export interface Perk {
