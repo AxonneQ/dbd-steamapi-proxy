@@ -20,7 +20,7 @@ export const CONSTANTS = {
     dbdCdn_addr: 'cdn.live.dbd.bhvronline.com',
     dbdCdn_archive: '/gameinfo/archiveStories/v1/Tome04.json',
     // Dbd Wiki
-    dbdWiki_addr: 'deadbydaylight.gamepedia.com',
+    dbdWiki_addr: 'deadbydaylight.fandom.com',
     dbdWiki_shrine: '/Shrine_of_Secrets',
     dbdWiki_perks: '/Perks',
 }

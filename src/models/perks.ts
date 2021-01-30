@@ -125,7 +125,7 @@ export function initPerks(perkList: Perks) {
     perkList.Leader = { id: 'Leader', displayName: 'Leader', description: '', side: 'survivor', teachableLevel: 40, character: 'Dwight Fairfield', characterIndex: 0, iconPath: 'UI/Icons/Perks/iconPerks_leader.png' };
     perkList.Surveillance = { id: 'Surveillance', displayName: 'Surveillance', description: '', side: 'killer', teachableLevel: 35, character: 'The Pig', characterIndex: 268435466, iconPath: 'UI/Icons/Perks/Finland/iconPerks_surveillance.png' };
     perkList.FurtiveChase = { id: 'FurtiveChase', displayName: 'Furtive Chase', description: '', side: 'killer', teachableLevel: 40, character: 'The Ghostface', characterIndex: 268435471, iconPath: 'UI/Icons/Perks/Oman/iconPerks_furtiveChase.png' };
-    perkList.MadGrit = { id: 'MadGrit', displayName: 'Mad Grit', description: '', side: 'killer', teachableLevel: 35, character: 'The Legion', characterIndex: 268435469, iconPath: 'UI/Icons/Perks/Kenya/iconPerks_madGrit.png' };
+    perkList.MadGrit = { id: 'Madgrit', displayName: 'Mad Grit', description: '', side: 'killer', teachableLevel: 35, character: 'The Legion', characterIndex: 268435469, iconPath: 'UI/Icons/Perks/Kenya/iconPerks_madGrit.png' };
     perkList.InTheDark = { id: 'InTheDark', displayName: 'Knock Out', description: '', side: 'killer', teachableLevel: 30, character: 'The Leatherface', characterIndex: 268435464, iconPath: 'UI/Icons/Perks/Cannibal/iconPerks_knockOut.png' };
     perkList.TrailofTorment = { id: 'TrailofTorment', displayName: 'Trail of Torment', description: '', side: 'killer', teachableLevel: 35, character: 'The Executioner', characterIndex: 268435475, iconPath: 'UI/Icons/Perks/Wales/iconPerks_trailOfTorment.png' };
     perkList.Hope = { id: 'Hope', displayName: 'Hope', description: '', side: 'survivor', teachableLevel: -1, character: 'Common', characterIndex: -1, iconPath: 'UI/Icons/Perks/iconPerks_hope.png' };
@@ -154,9 +154,15 @@ export function initPerks(perkList: Perks) {
     perkList.Hex_Undying = { id: 'Hex_Undying', displayName: 'Hex: Undying', description: '', side: 'killer', teachableLevel: 40, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_hexUndying.png' };
     perkList.Hex_Blood_Favor = { id: 'Hex_Blood_Favor', displayName: 'Hex: Blood Favour', description: '', side: 'killer', teachableLevel: 35, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_hexBloodFavor.png' };
     perkList.Dragons_Grip = { id: 'Hex_Undying', displayName: 'Dragon\'s Grip', description: '', side: 'killer', teachableLevel: 30, character: 'The Blight', characterIndex: 268435476, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_dragonsGrip.png' };
-    perkList.Visionary = { id: 'Visionary', displayName: 'Visionary', description: '', side: 'survivor', teachableLevel: 30, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_visionary.png' };
-    perkList.Desperate_Measures = { id: 'Desperate_Measures', displayName: 'Desperate Measures', description: '', side: 'survivor', teachableLevel: 35, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_desperateMeasures.png' };
-    perkList.Built_To_Last = { id: 'Built_To_Last', displayName: 'Built to Last', description: '', side: 'survivor', teachableLevel: 40, character: 'Felix Richter', characterIndex: 23, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_builtToLast.png' };
+    perkList.Visionary = { id: 'Visionary', displayName: 'Visionary', description: '', side: 'survivor', teachableLevel: 30, character: 'Felix Richter', characterIndex: 22, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_visionary.png' };
+    perkList.Desperate_Measures = { id: 'Desperate_Measures', displayName: 'Desperate Measures', description: '', side: 'survivor', teachableLevel: 35, character: 'Felix Richter', characterIndex: 22, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_desperateMeasures.png' };
+    perkList.Built_To_Last = { id: 'Built_To_Last', displayName: 'Built to Last', description: '', side: 'survivor', teachableLevel: 40, character: 'Felix Richter', characterIndex: 22, iconPath: 'UI/Icons/Perks/Yemen/iconPerks_builtToLast.png' };
+    perkList.Appraisal = { id: 'Appraisal', displayName: 'Appraisal', description: '', side: 'survivor', teachableLevel: 30, character: 'Élodie Rakoto', characterIndex: 23, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_appraisal.png' };
+    perkList.Deception = { id: 'Deception', displayName: 'Deception', description: '', side: 'survivor', teachableLevel: 35, character: 'Élodie Rakoto', characterIndex: 23, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_deception.png' };
+    perkList.Power_Struggle = { id: 'Power Struggle', displayName: 'Power Struggle', description: '', side: 'survivor', teachableLevel: 40, character: 'Élodie Rakoto', characterIndex: 23, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_powerStruggle.png' };
+    perkList.Hoarder = { id: 'Hoarder', displayName: 'Hoarder', description: '', side: 'killer', teachableLevel: 30, character: 'The Twins', characterIndex: 268435477, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_Hoarder.png' };
+    perkList.Oppression = { id: 'Oppression', displayName: 'Oppression', description: '', side: 'killer', teachableLevel: 35, character: 'The Twins', characterIndex: 268435477, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_Oppression.png' };
+    perkList.Coup_De_Grace = { id: 'Coup de Grace', displayName: 'Coup de Grâce', description: '', side: 'killer', teachableLevel: 40, character: 'The Twins', characterIndex: 268435477, iconPath: 'UI/Icons/Perks/Aurora/iconPerks_coupDeGrace.png' };
 
     return perkList;
 }
@@ -321,6 +327,12 @@ export interface Perks {
     Visionary: Perk;
     Desperate_Measures: Perk;
     Built_To_Last: Perk;
+    Appraisal: Perk;
+    Deception: Perk;
+    Power_Struggle: Perk;
+    Hoarder: Perk;
+    Oppression: Perk;
+    Coup_De_Grace: Perk;
 }
 
 export interface Perk {
