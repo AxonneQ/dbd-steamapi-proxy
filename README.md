@@ -1,5 +1,12 @@
 # dbd-steamapi-proxy
 
+# OUTDATED PROJECT.
+This repository is an old project and has been abandoned. The new version is private, and is a complete overhaul adding new functionality, allowing higher traffic, caching and is generally more secure.
+
+I am leaving this outdated repository public for others who would like to use some of the code for their own project (Poor code and bad practices, but might still be useful).
+
+---
+
 This is a simple proxy server that fetches Dead By Daylight statistics and total online player count.
 
 ### Available API Calls:
